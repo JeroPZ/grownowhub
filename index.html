@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowNow | Domina la Rueda de tu Vida</title>
+    <!-- Google Fonts: Inter para un look Apple/Notion -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffffff',
+                        secondary: '#231F20',
+                        accent: '#6AC1AB',
+                        accentDark: '#55a38f',
+                        lightGray: '#F5F5F5'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'hard': '4px 4px 0px 0px #231F20',
+                        'hard-hover': '2px 2px 0px 0px #231F20',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #231F20;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Animaciones personalizadas */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-pop {
+            animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Ocultar scrollbar en modales */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Estilo Notion para inputs */
+        .notion-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+        .notion-input:focus {
+            border-color: #6AC1AB;
+            box-shadow: 0 0 0 3px rgba(106, 193, 171, 0.2);
+        }
+    </style>
+</head>
+<body class="selection:bg-accent selection:text-white">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md z-40 border-b border-gray-100 transition-all duration-300">
+        <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow Logo" class="h-10 object-contain">
+            </a>
+            <div class="flex items-center gap-4">
+                <a href="#solucion" class="hidden md:block text-sm font-semibold hover:text-accent transition-colors">El Sistema</a>
+                <button onclick="openModal()" class="bg-secondary text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-black transition-transform hover:scale-105 active:scale-95">
+                    Acceder Ahora
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section -->
+    <section class="pt-32 pb-20 md:pt-40 md:pb-32 px-6 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+            <div class="max-w-xl z-10">
+                <div class="inline-block bg-accent/10 text-accentDark font-bold px-3 py-1 rounded-full text-xs mb-6 tracking-wide uppercase">
+                    Nuevo Lanzamiento 2026
+                </div>
+                <h1 class="text-5xl md:text-6xl font-black leading-[1.1] mb-6 tracking-tight">
+                    Deja de sobrevivir. <br>
+                    <span class="text-accent">Empieza a crecer.</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 leading-relaxed font-light">
+                    El sistema exacto basado en la <strong class="text-secondary font-semibold">Rueda de la Vida</strong> para pasar del caos mental y la procrastinación, a tener claridad total, disciplina inquebrantable y resultados predecibles en 30 días.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openModal()" class="bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg shadow-hard hover:shadow-hard-hover hover:translate-y-[2px] hover:translate-x-[2px] transition-all flex items-center justify-center gap-2">
+                        Empieza tu transformación
+                        <i class="ph ph-arrow-right font-bold"></i>
+                    </button>
+                    <p class="text-xs text-gray-400 text-center sm:text-left flex items-center justify-center sm:justify-start gap-1 mt-2 sm:mt-0">
+                        <i class="ph-fill ph-lock-key"></i> Acceso inmediato.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Ebook Mockup (CSS CSS puro + Logo) -->
+            <div class="relative z-10 perspective-1000 flex justify-center md:justify-end">
+                <div class="relative w-72 h-96 bg-secondary rounded-r-2xl rounded-l-md shadow-2xl border-l-8 border-gray-800 animate-float flex flex-col items-center justify-center p-8 overflow-hidden transform rotate-y-[-10deg] rotate-x-[5deg]">
+                    <!-- Textura de libro -->
+                    <div class="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPgo8cmVjdCB3aWR0aD0iNCIgaGVpZ2h0PSI0IiBmaWxsPSIjZmZmIiAvPgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMDAwIiAvPgo8L3N2Zz4=')]"></div>
+                    <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow" class="w-full max-w-[180px] filter brightness-0 invert mb-8 z-10">
+                    <div class="text-white text-center z-10">
+                        <h3 class="text-2xl font-black mb-1">El Manual</h3>
+                        <p class="text-accent text-sm font-semibold uppercase tracking-widest">Rueda de la Vida</p>
+                    </div>
+                    <!-- Decoración -->
+                    <div class="absolute bottom-0 w-full h-2 bg-accent"></div>
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-white/5 rounded-bl-full"></div>
+                </div>
+                <!-- Sombra proyectada -->
+                <div class="absolute -bottom-8 right-10 w-64 h-8 bg-black/20 blur-xl rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Pain Points -->
+    <section class="py-20 bg-lightGray">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-black mb-4">¿Te suena familiar?</h2>
+            <p class="text-gray-600 mb-12 max-w-2xl mx-auto">La mayoría de las personas operan al 20% de su capacidad porque están rotas en las áreas que más importan.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 text-left">
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-red-100 text-red-500 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        <i class="ph-fill ph-cloud-fog"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Falta de Claridad</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Te despiertas sin saber cuál es la prioridad del día. Apagas fuegos en lugar de construir tu futuro.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-orange-100 text-orange-500 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        <i class="ph-fill ph-scales"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Desbalance Total</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Ganas dinero pero tu salud se deteriora. O estás fit, pero tus relaciones personales están muertas.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                    <div class="w-12 h-12 bg-gray-100 text-gray-600 rounded-xl flex items-center justify-center mb-6 text-2xl">
+                        <i class="ph-fill ph-hourglass-high"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Cero Disciplina</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Empiezas hábitos los lunes y los abandonas los miércoles. Estás cansado de decepcionarte a ti mismo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Solución -->
+    <section id="solucion" class="py-24 px-6 relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-4xl font-black mb-6 leading-tight">La "Rueda de la Vida" no es un concepto. <br><span class="text-accent">Es un algoritmo.</span></h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        En GrowNow no te damos frases motivacionales vacías. Te entregamos un marco de trabajo (framework) auditable y cuantificable.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-accent text-xl mt-0.5"></i>
+                            <span class="text-gray-700"><strong>Diagnóstico de 8 áreas:</strong> Salud, Finanzas, Amor, Desarrollo, etc.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-accent text-xl mt-0.5"></i>
+                            <span class="text-gray-700"><strong>Sistemas, no metas:</strong> Construye rutinas a prueba de balas.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="ph-fill ph-check-circle text-accent text-xl mt-0.5"></i>
+                            <span class="text-gray-700"><strong>Auditoría semanal:</strong> Mide tu progreso objetivamente.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="relative bg-lightGray p-8 rounded-3xl flex justify-center items-center">
+                    <!-- Representación abstracta de la rueda -->
+                    <div class="w-64 h-64 border-8 border-white rounded-full relative shadow-soft bg-white p-4">
+                        <div class="w-full h-full rounded-full border border-gray-100 relative grid grid-cols-2 grid-rows-2 overflow-hidden">
+                            <div class="border-r border-b border-gray-100 bg-accent/10 flex items-center justify-center"><i class="ph ph-heart text-accent text-2xl"></i></div>
+                            <div class="border-b border-gray-100 bg-accent/20 flex items-center justify-center"><i class="ph ph-coins text-accent text-2xl"></i></div>
+                            <div class="border-r border-gray-100 bg-accent/5 flex items-center justify-center"><i class="ph ph-barbell text-accent text-2xl"></i></div>
+                            <div class="bg-accent/30 flex items-center justify-center"><i class="ph ph-brain text-accent text-2xl"></i></div>
+                        </div>
+                        <div class="absolute inset-0 m-auto w-16 h-16 bg-secondary text-white rounded-full shadow-lg flex items-center justify-center font-bold text-xs">
+                            GROW
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Producto / Oferta -->
+    <section class="py-24 bg-secondary text-white relative px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-black mb-8">El atajo que me costó años descubrir.</h2>
+            
+            <div class="bg-white text-secondary rounded-3xl p-8 md:p-12 shadow-2xl relative mt-12 mx-auto max-w-3xl transform hover:scale-[1.01] transition-transform">
+                <!-- Tag de oferta -->
+                <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg flex items-center gap-2">
+                    <i class="ph-fill ph-timer"></i> Oferta por tiempo limitado
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8 items-center text-left">
+                    <div class="flex justify-center md:justify-start">
+                        <!-- Mini Ebook -->
+                         <div class="w-48 h-64 bg-secondary rounded-r-lg rounded-l-sm shadow-xl flex flex-col items-center justify-center p-4 transform -rotate-6">
+                            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow" class="w-24 filter brightness-0 invert mb-4">
+                            <div class="text-accent text-xs font-bold border border-accent px-2 py-1 rounded">EBOOK OFICIAL</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-black mb-2">Sistema GrowNow: La Rueda de la Vida</h3>
+                        <p class="text-gray-500 text-sm mb-6">Descarga inmediata en PDF + Plantillas de Notion integradas.</p>
+                        
+                        <div class="mb-6">
+                            <span class="text-gray-400 line-through text-lg font-medium">Valor Normal: $97.00 USD</span>
+                            <div class="flex items-baseline gap-2 mt-1">
+                                <span class="text-5xl font-black text-secondary">$19</span>
+                                <span class="text-lg font-bold text-gray-500">USD</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal()" class="w-full bg-accent text-white py-4 rounded-xl font-black text-xl shadow-hard hover:shadow-hard-hover hover:translate-y-[2px] hover:translate-x-[2px] transition-all mb-3 text-center">
+                            Sí, Quiero Comprar Ahora
+                        </button>
+                        <p class="text-xs text-center text-gray-400"><i class="ph-fill ph-shield-check text-green-500"></i> Pago 100% seguro y encriptado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Testimonios (Social Proof) -->
+    <section class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black">No escuches lo que digo. <br>Mira los resultados.</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-6 border border-gray-100 rounded-2xl bg-white shadow-sm">
+                    <div class="flex text-yellow-400 mb-4"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-4">"Llevaba años estancado. Leí esto en una tarde y al día siguiente mi rutina cambió por completo. La claridad que te da evaluar cada área es brutal."</p>
+                    <p class="font-bold text-sm">— Carlos M., Emprendedor</p>
+                </div>
+                <div class="p-6 border border-gray-100 rounded-2xl bg-white shadow-sm">
+                    <div class="flex text-yellow-400 mb-4"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-4">"Directo al grano, sin paja. Implementé el sistema en Notion y por primera vez siento que tengo el control de mi salud y mis finanzas al mismo tiempo."</p>
+                    <p class="font-bold text-sm">— Laura S., Diseñadora</p>
+                </div>
+                <div class="p-6 border border-gray-100 rounded-2xl bg-white shadow-sm">
+                    <div class="flex text-yellow-400 mb-4"><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i></div>
+                    <p class="text-gray-600 text-sm mb-4">"El precio es un chiste para el valor que aporta. Me hizo darme cuenta de que estaba descuidando mi círculo social por trabajar demasiado. 10/10."</p>
+                    <p class="font-bold text-sm">— Andrés V., Ingeniero</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Final CTA -->
+    <footer class="bg-gray-50 pt-20 pb-10 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-3xl font-black mb-6">Tu vida de hace 5 años envidiaría la vida que puedes empezar a construir hoy.</h2>
+            <button onclick="openModal()" class="bg-secondary text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-black transition-colors shadow-lg">
+                Obtener GrowNow por $19
+            </button>
+        </div>
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 pt-8 border-t border-gray-200">
+            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow Logo" class="h-6 opacity-50 grayscale mb-4 md:mb-0">
+            <p>&copy; 2026 GrowNow. Todos los derechos reservados.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-gray-600">Términos</a>
+                <a href="#" class="hover:text-gray-600">Privacidad</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 6. Growee (Mascota Flotante) -->
+    <div id="growee-container" class="fixed bottom-6 right-6 z-30 flex items-end gap-4 pointer-events-none">
+        <!-- Burbuja de diálogo -->
+        <div id="growee-tooltip" class="bg-white border-2 border-secondary p-4 rounded-2xl shadow-hard mb-4 max-w-[200px] pointer-events-auto opacity-0 transform translate-y-4 transition-all duration-300 origin-bottom-right hidden">
+            <p id="growee-message" class="text-sm font-semibold text-secondary leading-tight">
+                ¡Hola! Soy Growee 🌱. <br>¿Listo para llevar tu vida al siguiente nivel?
+            </p>
+            <!-- Triángulo de la burbuja -->
+            <div class="absolute -bottom-2 right-6 w-4 h-4 bg-white border-b-2 border-r-2 border-secondary transform rotate-45"></div>
+        </div>
+        
+        <!-- Mascota Interactiva -->
+        <div class="pointer-events-auto cursor-pointer transform hover:scale-110 transition-transform origin-bottom" onclick="pokeGrowee()">
+            <img src="uploaded:image.png-6fe8ac96-dbbb-4ec3-a6b2-edb22ad4b37b" alt="Growee Mascota" class="w-24 h-24 object-contain filter drop-shadow-xl animate-float">
+        </div>
+    </div>
+
+
+    <!-- 5 & 7. Modal de Compra / Registro (Overlay) -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 px-4">
+        
+        <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 transition-transform duration-300" id="checkout-content">
+            
+            <!-- Izquierda: Resumen (Oculto en móvil muy pequeño) -->
+            <div class="bg-lightGray w-full md:w-2/5 p-8 hidden md:flex flex-col justify-between border-r border-gray-200">
+                <div>
+                    <h3 class="font-bold text-lg mb-6">Resumen de tu orden</h3>
+                    <div class="flex gap-4 items-center mb-6">
+                        <div class="w-16 h-20 bg-secondary rounded shadow flex items-center justify-center p-2">
+                            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="Logo" class="filter brightness-0 invert w-full">
+                        </div>
+                        <div>
+                            <p class="font-bold text-secondary">GrowNow Ebook</p>
+                            <p class="text-xs text-gray-500">PDF + Plantillas Notion</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-6">
+                    <div class="flex justify-between text-sm mb-2 text-gray-500">
+                        <span>Valor Original</span>
+                        <span class="line-through">$97.00</span>
+                    </div>
+                    <div class="flex justify-between font-black text-xl text-secondary">
+                        <span>Total a pagar</span>
+                        <span>$19.00 USD</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Derecha: Formulario interactivo -->
+            <div class="w-full md:w-3/5 p-8 relative max-h-[90vh] overflow-y-auto no-scrollbar">
+                <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors">
+                    <i class="ph ph-x text-2xl"></i>
+                </button>
+
+                <!-- Vista 1: Registro y Pago -->
+                <div id="checkout-step-1" class="animate-pop">
+                    <h2 class="text-2xl font-black mb-1">Completa tu compra</h2>
+                    <p class="text-gray-500 text-sm mb-8">Crea tu cuenta y accede al contenido instantáneamente.</p>
+
+                    <form id="payment-form" onsubmit="handlePayment(event)">
+                        <!-- Sección Cuenta -->
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-wider text-gray-400">
+                                <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center text-xs">1</span> 
+                                Tu Cuenta
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Correo Electrónico</label>
+                                    <input type="email" required placeholder="tu@email.com" class="notion-input">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Crear Contraseña</label>
+                                    <input type="password" required placeholder="••••••••" minlength="6" class="notion-input">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección Pago Simulada -->
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold flex items-center gap-2 mb-4 uppercase tracking-wider text-gray-400">
+                                <span class="w-6 h-6 rounded-full bg-gray-100 text-gray-800 flex items-center justify-center text-xs">2</span> 
+                                Pago Seguro
+                            </h4>
+                            
+                            <div class="border border-gray-200 rounded-xl p-4 bg-gray-50 space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-600 mb-1">Número de Tarjeta</label>
+                                    <div class="relative">
+                                        <input type="text" required placeholder="0000 0000 0000 0000" maxlength="19" class="notion-input pl-10 font-mono text-sm">
+                                        <i class="ph ph-credit-card absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">Expiración</label>
+                                        <input type="text" required placeholder="MM/AA" maxlength="5" class="notion-input text-center font-mono text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-600 mb-1">CVC</label>
+                                        <input type="text" required placeholder="123" maxlength="4" class="notion-input text-center font-mono text-sm">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="btn-pay" class="w-full bg-secondary text-white py-4 rounded-xl font-bold text-lg hover:bg-black transition-colors flex justify-center items-center gap-2">
+                            <span>Pagar $19.00 USD</span>
+                            <i class="ph-bold ph-lock-key"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Vista 2: Procesando -->
+                <div id="checkout-step-loading" class="hidden flex-col items-center justify-center py-20 animate-pop">
+                    <div class="w-16 h-16 border-4 border-gray-100 border-t-accent rounded-full animate-spin mb-4"></div>
+                    <h3 class="font-bold text-lg">Procesando pago...</h3>
+                    <p class="text-sm text-gray-500">No cierres esta ventana.</p>
+                </div>
+
+                <!-- Vista 3: Éxito y Descarga -->
+                <div id="checkout-step-success" class="hidden flex-col items-center text-center py-10 animate-pop">
+                    <div class="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center text-4xl mb-6">
+                        <i class="ph-bold ph-check"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-2">¡Pago Exitoso!</h2>
+                    <p class="text-gray-600 mb-8">Tu cuenta ha sido creada. Hemos enviado el recibo a tu correo. Ya puedes acceder a tu material.</p>
+                    
+                    <div class="w-full bg-lightGray p-6 rounded-2xl mb-8 border border-gray-200">
+                        <h4 class="font-bold text-left mb-4">Tus Archivos:</h4>
+                        <div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <i class="ph-fill ph-file-pdf text-red-500 text-3xl"></i>
+                                <div class="text-left">
+                                    <p class="font-bold text-sm">Ebook_GrowNow_V1.pdf</p>
+                                    <p class="text-xs text-gray-400">14 MB</p>
+                                </div>
+                            </div>
+                            <button class="bg-accent/10 text-accentDark px-4 py-2 rounded-lg font-bold text-sm hover:bg-accent hover:text-white transition-colors">
+                                Descargar
+                            </button>
+                        </div>
+                    </div>
+
+                    <button onclick="closeModal()" class="text-gray-500 font-semibold text-sm hover:text-black underline">
+                        Cerrar y volver a la página
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de interactividad -->
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('checkout-modal');
+        const modalContent = document.getElementById('checkout-content');
+        
+        const step1 = document.getElementById('checkout-step-1');
+        const stepLoading = document.getElementById('checkout-step-loading');
+        const stepSuccess = document.getElementById('checkout-step-success');
+
+        function openModal() {
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-95');
+            modalContent.classList.add('scale-100');
+            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
+            
+            // Reset states
+            step1.classList.remove('hidden');
+            stepLoading.classList.add('hidden');
+            stepSuccess.classList.add('hidden');
+            document.getElementById('payment-form').reset();
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fake Payment Processing
+        function handlePayment(e) {
+            e.preventDefault();
+            
+            // Ocultar form, mostrar loading
+            step1.classList.add('hidden');
+            stepLoading.classList.remove('hidden');
+            stepLoading.classList.add('flex');
+
+            // Simular API Call de 2.5 segundos
+            setTimeout(() => {
+                stepLoading.classList.remove('flex');
+                stepLoading.classList.add('hidden');
+                
+                stepSuccess.classList.remove('hidden');
+                stepSuccess.classList.add('flex');
+                
+                // Disparar mensaje de Growee feliz
+                showGroweeMessage("¡Felicidades! 🎉 Acabas de dar el primer paso. Revisa tu correo.");
+            }, 2500);
+        }
+
+        // Growee (Mascota) Logic
+        const messages = [
+            "El 80% de la gente no pasa de la introducción. Tú serás diferente. 💪",
+            "¿Sabías que organizar tu entorno reduce la ansiedad un 40%? 🧠",
+            "No dejes para mañana el equilibrio que puedes lograr hoy. ⏳",
+            "¡Ey! Si tienes dudas, revisa los testimonios de arriba. 👀",
+            "Un sistema vence a la motivación todos los días de la semana. 📈"
+        ];
+        
+        const tooltip = document.getElementById('growee-tooltip');
+        const messageEl = document.getElementById('growee-message');
+        let tooltipTimeout;
+
+        function showGroweeMessage(customMsg = null) {
+            clearTimeout(tooltipTimeout);
+            
+            const msg = customMsg || messages[Math.floor(Math.random() * messages.length)];
+            messageEl.innerHTML = msg;
+            
+            tooltip.classList.remove('hidden');
+            // Timeout pequeño para la transición de opacidad
+            setTimeout(() => {
+                tooltip.classList.remove('opacity-0', 'translate-y-4');
+            }, 50);
+
+            // Ocultar después de 5 segundos
+            tooltipTimeout = setTimeout(() => {
+                tooltip.classList.add('opacity-0', 'translate-y-4');
+                setTimeout(() => tooltip.classList.add('hidden'), 300);
+            }, 5000);
+        }
+
+        function pokeGrowee() {
+            showGroweeMessage();
+        }
+
+        // Mostrar un mensaje inicial después de unos segundos
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                showGroweeMessage("¡Hola! Soy Growee 🌱. Estoy aquí para guiarte en tu proceso.");
+            }, 3000);
+            
+            // Que Growee hable de forma aleatoria cada 20 segundos
+            setInterval(() => {
+                if(modal.classList.contains('opacity-0')) { // Solo si no está en checkout
+                    showGroweeMessage();
+                }
+            }, 20000);
+        });
+
+    </script>
+</body>
+</html>
+
+
