@@ -94,7 +94,7 @@
             </a>
             <div class="flex items-center gap-4">
                 <a href="#solucion" class="hidden md:block text-sm font-semibold hover:text-accent transition-colors">El Sistema</a>
-                <button onclick="openModal()" class="bg-secondary text-white px-5 py-2.5 rounded-full text-sm font-bold hover:bg-black transition-transform hover:scale-105 active:scale-95">
+                <button onclick="window.location.href='https://pay.hotmart.com/M104724732Q?bid=1775517113175'" class="bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg">
                     Acceder Ahora
                 </button>
             </div>
@@ -251,7 +251,7 @@
                             </div>
                         </div>
 
-                        <button onclick="openModal()" class="w-full bg-accent text-white py-4 rounded-xl font-black text-xl shadow-hard hover:shadow-hard-hover hover:translate-y-[2px] hover:translate-x-[2px] transition-all mb-3 text-center">
+                        <button onclick="window.location.href='https://pay.hotmart.com/M104724732Q?bid=1775517113175'" class="bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg">
                             Sí, Quiero Comprar Ahora
                         </button>
                         <p class="text-xs text-center text-gray-400"><i class="ph-fill ph-shield-check text-green-500"></i> Pago 100% seguro y encriptado.</p>
@@ -323,42 +323,9 @@
         </div>
     </div>
 
-
-    <!-- 5 & 7. Modal de Compra / Registro (Overlay) -->
-    <div id="checkout-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex justify-center items-center opacity-0 pointer-events-none transition-opacity duration-300 px-4">
-        
-        <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row transform scale-95 transition-transform duration-300" id="checkout-content">
-            
-            <!-- Izquierda: Resumen (Oculto en móvil muy pequeño) -->
-            <div class="bg-lightGray w-full md:w-2/5 p-8 hidden md:flex flex-col justify-between border-r border-gray-200">
-                <div>
-                    <h3 class="font-bold text-lg mb-6">Resumen de tu orden</h3>
-                    <div class="flex gap-4 items-center mb-6">
-                        <div class="w-16 h-20 bg-secondary rounded shadow flex items-center justify-center p-2">
-                            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="Logo" class="filter brightness-0 invert w-full">
-                        </div>
-                        <div>
-                            <p class="font-bold text-secondary">GrowNow Ebook</p>
-                            <p class="text-xs text-gray-500">PDF + Plantillas Notion</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="border-t border-gray-200 pt-6">
-                    <div class="flex justify-between text-sm mb-2 text-gray-500">
-                        <span>Valor Original</span>
-                        <span class="line-through">$97.00</span>
-                    </div>
-                    <div class="flex justify-between font-black text-xl text-secondary">
-                        <span>Total a pagar</span>
-                        <span>$19.00 USD</span>
-                    </div>
-                </div>
-            </div>
-
             <!-- Derecha: Formulario interactivo -->
             <div class="w-full md:w-3/5 p-8 relative max-h-[90vh] overflow-y-auto no-scrollbar">
-                <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-400 hover:text-black transition-colors">
+               <button onclick="window.location.href='https://pay.hotmart.com/M104724732Q?bid=1775517113175'" class="bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg">
                     <i class="ph ph-x text-2xl"></i>
                 </button>
 
@@ -452,7 +419,7 @@
                         </div>
                     </div>
 
-                    <button onclick="closeModal()" class="text-gray-500 font-semibold text-sm hover:text-black underline">
+                    <button onclick="window.location.href='https://pay.hotmart.com/M104724732Q?bid=1775517113175'" class="bg-accent text-white px-8 py-4 rounded-xl font-bold text-lg">
                         Cerrar y volver a la página
                     </button>
                 </div>
@@ -463,56 +430,6 @@
 
     <!-- Scripts de interactividad -->
     <script>
-        // Modal Logic
-        const modal = document.getElementById('checkout-modal');
-        const modalContent = document.getElementById('checkout-content');
-        
-        const step1 = document.getElementById('checkout-step-1');
-        const stepLoading = document.getElementById('checkout-step-loading');
-        const stepSuccess = document.getElementById('checkout-step-success');
-
-        function openModal() {
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modalContent.classList.remove('scale-95');
-            modalContent.classList.add('scale-100');
-            document.body.style.overflow = 'hidden'; // Evitar scroll de fondo
-            
-            // Reset states
-            step1.classList.remove('hidden');
-            stepLoading.classList.add('hidden');
-            stepSuccess.classList.add('hidden');
-            document.getElementById('payment-form').reset();
-        }
-
-        function closeModal() {
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Fake Payment Processing
-        function handlePayment(e) {
-            e.preventDefault();
-            
-            // Ocultar form, mostrar loading
-            step1.classList.add('hidden');
-            stepLoading.classList.remove('hidden');
-            stepLoading.classList.add('flex');
-
-            // Simular API Call de 2.5 segundos
-            setTimeout(() => {
-                stepLoading.classList.remove('flex');
-                stepLoading.classList.add('hidden');
-                
-                stepSuccess.classList.remove('hidden');
-                stepSuccess.classList.add('flex');
-                
-                // Disparar mensaje de Growee feliz
-                showGroweeMessage("¡Felicidades! 🎉 Acabas de dar el primer paso. Revisa tu correo.");
-            }, 2500);
-        }
-
         // Growee (Mascota) Logic
         const messages = [
             "El 80% de la gente no pasa de la introducción. Tú serás diferente. 💪",
@@ -557,7 +474,7 @@
             
             // Que Growee hable de forma aleatoria cada 20 segundos
             setInterval(() => {
-                if(modal.classList.contains('opacity-0')) { // Solo si no está en checkout
+                if(true) 
                     showGroweeMessage();
                 }
             }, 20000);
