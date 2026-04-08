@@ -267,11 +267,11 @@
         
         <div class="mb-8">
             <span class="text-gray-400 line-through text-lg font-medium">
-                Valor Normal: $97.00 USD
+                Valor Normal: $39.99 USD
             </span>
 
             <div class="flex items-baseline gap-2 mt-2">
-                <span class="text-5xl font-black text-secondary">$19</span>
+                <span class="text-5xl font-black text-secondary">$19.99</span>
                 <span class="text-lg font-bold text-gray-500">USD</span>
             </div>
         </div>
@@ -331,7 +331,7 @@
             </button>
         </div>
         <div class="w-full px-6 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 pt-8 border-t border-gray-200">
-            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow Logo" class="h-6 opacity-50 grayscale mb-4 md:mb-0">
+            <img src="logo.PNG" alt="GrowNow Logo" class="h-6 opacity-50 grayscale mb-4 md:mb-0">
             <p>&copy; 2026 GrowNow. Todos los derechos reservados.</p>
             <div class="flex gap-4 mt-4 md:mt-0">
                 <a href="#" class="hover:text-gray-600">Términos</a>
@@ -354,63 +354,64 @@
         
         <!-- Mascota Interactiva -->
         <div class="pointer-events-auto cursor-pointer transform hover:scale-110 transition-transform origin-bottom" onclick="pokeGrowee()">
-            <img src="uploaded:image.png-6fe8ac96-dbbb-4ec3-a6b2-edb22ad4b37b" alt="Growee Mascota" class="w-24 h-24 object-contain filter drop-shadow-xl animate-float">
+            <img src="growee.PNG" alt="Growee Mascota" class="w-24 h-24 object-contain filter drop-shadow-xl animate-float">
         </div>
     </div>
 
     <!-- Scripts de interactividad -->
-    <script>
-        // Growee (Mascota) Logic
-        const messages = [
-            "El 80% de la gente no pasa de la introducción. Tú serás diferente. 💪",
-            "¿Sabías que organizar tu entorno reduce la ansiedad un 40%? 🧠",
-            "No dejes para mañana el equilibrio que puedes lograr hoy. ⏳",
-            "¡Ey! Si tienes dudas, revisa los testimonios de arriba. 👀",
-            "Un sistema vence a la motivación todos los días de la semana. 📈"
-        ];
+<script>
+    // Growee (Mascota) Logic
+    const messages = [
+        "El 80% de la gente no pasa de la introducción. Tú serás diferente. 💪",
+        "¿Sabías que organizar tu entorno reduce la ansiedad un 40%? 🧠",
+        "No dejes para mañana el equilibrio que puedes lograr hoy. ⏳",
+        "¡Ey! Si tienes dudas, revisa los testimonios de arriba. 👀",
+        "Un sistema vence a la motivación todos los días de la semana. 📈"
+    ];
+    
+    const tooltip = document.getElementById('growee-tooltip');
+    const messageEl = document.getElementById('growee-message');
+    const modal = document.getElementById('checkout-modal');
+
+    let tooltipTimeout;
+
+    function showGroweeMessage(customMsg = null) {
+        clearTimeout(tooltipTimeout);
         
-        const tooltip = document.getElementById('growee-tooltip');
-        const messageEl = document.getElementById('growee-message');
-        let tooltipTimeout;
+        const msg = customMsg || messages[Math.floor(Math.random() * messages.length)];
+        messageEl.innerHTML = msg;
+        
+        tooltip.classList.remove('hidden');
 
-        function showGroweeMessage(customMsg = null) {
-            clearTimeout(tooltipTimeout);
-            
-            const msg = customMsg || messages[Math.floor(Math.random() * messages.length)];
-            messageEl.innerHTML = msg;
-            
-            tooltip.classList.remove('hidden');
-            // Timeout pequeño para la transición de opacidad
-            setTimeout(() => {
-                tooltip.classList.remove('opacity-0', 'translate-y-4');
-            }, 50);
+        setTimeout(() => {
+            tooltip.classList.remove('opacity-0', 'translate-y-4');
+        }, 50);
 
-            // Ocultar después de 5 segundos
-            tooltipTimeout = setTimeout(() => {
-                tooltip.classList.add('opacity-0', 'translate-y-4');
-                setTimeout(() => tooltip.classList.add('hidden'), 300);
-            }, 5000);
-        }
+        tooltipTimeout = setTimeout(() => {
+            tooltip.classList.add('opacity-0', 'translate-y-4');
+            setTimeout(() => tooltip.classList.add('hidden'), 300);
+        }, 5000);
+    }
 
-        function pokeGrowee() {
-            showGroweeMessage();
-        }
+    function pokeGrowee() {
+        showGroweeMessage();
+    }
 
-        // Mostrar un mensaje inicial después de unos segundos
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                showGroweeMessage("¡Hola! Soy Growee 🌱. Estoy aquí para guiarte en tu proceso.");
-            }, 3000);
-            
-            // Que Growee hable de forma aleatoria cada 20 segundos
-            setInterval(() => {
-                if(true) 
-                    showGroweeMessage();
-                }
-            }, 20000);
-        });
-
-    </script>
+    window.addEventListener('load', () => {
+        // Mensaje inicial
+        setTimeout(() => {
+            showGroweeMessage("¡Hola! Soy Growee 🌱. Estoy aquí para guiarte en tu proceso.");
+        }, 3000);
+        
+        // Mensaje automático cada 7 segundos
+        setInterval(() => {
+            // Solo si el modal NO está abierto
+            if (modal.classList.contains('opacity-0')) {
+                showGroweeMessage();
+            }
+        }, 7000);
+    });
+</script>
 </body>
     <!-- update -->
 </html>
