@@ -238,12 +238,23 @@
 
                 <div class="grid md:grid-cols-2 gap-8 items-center text-left">
                     <div class="flex justify-center md:justify-start">
-                        <!-- Mini Ebook -->
-                         <div class="w-48 h-64 bg-secondary rounded-r-lg rounded-l-sm shadow-xl flex flex-col items-center justify-center p-4 transform -rotate-6">
-                            <img src="uploaded:image.png-e0aa6777-0774-4c2b-932a-d6ea938b2efb" alt="GrowNow" class="w-24 filter brightness-0 invert mb-4">
-                            <div class="text-accent text-xs font-bold border border-accent px-2 py-1 rounded">EBOOK OFICIAL</div>
-                        </div>
-                    </div>
+                        <!-- Ebook visual (mockup real sin fondo blanco) -->
+<div class="flex justify-center md:justify-center md:pl-6 relative">
+    
+    <!-- Contenedor del libro -->
+    <div class="relative w-52 h-72 animate-float transform rotate-y-[-12deg] rotate-x-[6deg]">
+        
+        <!-- Imagen del ebook -->
+        <img src="ebookmockup.png" alt="Ebook GrowNow"
+            class="w-full h-full object-contain drop-shadow-2xl bg-transparent"
+            style="background: transparent;">
+    
+    </div>
+
+    <!-- Sombra proyectada centrada -->
+    <div class="absolute -bottom-6 left-1/2 -translate-x-1/2 w-40 h-6 bg-black/20 blur-xl rounded-full"></div>
+
+</div>
                     <div>
                         <h3 class="text-2xl font-black mb-2">Sistema GrowNow: La Rueda de la Vida</h3>
                         <p class="text-gray-500 text-sm mb-6">Descarga inmediata en PDF + Plantillas de Notion integradas.</p>
